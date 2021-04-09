@@ -23,18 +23,27 @@ public class Concert {
 
     }
 
-    public Concert(String conName, String conTime, String conDesc, String conDest, String conArtist) {
+    public Concert(String conName, String conTime, String conDesc, String conDest, String conArtist,ticket ticket) {
         this.conName = conName;
         this.conTime = conTime;
         this.conDesc = conDesc;
         this.conDest = conDest;
         this.conArtist = conArtist;
+        this.ticket = ticket;
     }
 
    
 
     public Concert(String conName){
         this.conName = conName;
+    }
+
+    public ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(ticket ticket) {
+        this.ticket = ticket;
     }
     
     public String getConName() {
@@ -114,3 +123,8 @@ public class Concert {
             System.out.println(songList.get(i));
 
         }
+       
+
+    }
+}
+
