@@ -12,22 +12,6 @@ import java.util.ArrayList;
  * @author User
  */
 public class Concert {
-    private String conName;
-    private String conTime;  
-    
-   
-
-    public Concert() {
-
-    }
-
-    public Concert(String conName, String conTime) {
-        this.conName = conName;
-        this.conTime = conTime;
-        
-    }
-
-    public class Concert {
      private String conName;
     private String conTime;
     private String conDesc;
@@ -92,15 +76,17 @@ public class Concert {
     public void setConArtist(String conArtist) {
         this.conArtist = conArtist;
     }
-            @Override
+
+
+    @Override
     public String toString() {
         return "\n\t\t\t\t\t\t" + conName 
                 + "\n\n\t\t\t     Artist\t\t: " + conArtist + "\t\t\t Time\t: " + conTime 
                 + "\n\t\t\t     Destination\t: " + conDest + "\n\t\t\t     Description\t: " + conDesc+"\n\n                             Available Tickets\t:" + ticket;
     }
 
-}
 
+    
     public void printSongListBP() {
         ArrayList<String> songList = new ArrayList<>();
         songList.add("\n\t\t\t\t\t\t\t   SONGS PERFORMING\t\n\n\t\t\t\t\t\t |\t'Kill This Love'\t\t|");
@@ -128,8 +114,3 @@ public class Concert {
             System.out.println(songList.get(i));
 
         }
-       
-
-    }
-}
-
