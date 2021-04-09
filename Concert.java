@@ -27,7 +27,28 @@ public class Concert {
         
     }
 
-    
+    public class Concert {
+     private String conName;
+    private String conTime;
+    private String conDesc;
+    private String conDest;
+    private String conArtist;
+    private ticket ticket;
+
+    public Concert() {
+
+    }
+
+    public Concert(String conName, String conTime, String conDesc, String conDest, String conArtist) {
+        this.conName = conName;
+        this.conTime = conTime;
+        this.conDesc = conDesc;
+        this.conDest = conDest;
+        this.conArtist = conArtist;
+    }
+
+   
+
     public Concert(String conName){
         this.conName = conName;
     }
@@ -48,12 +69,38 @@ public class Concert {
         this.conTime = conTime;
     }
 
-    
-    @Override
-    public String toString() {
-        return "Concert{" + "conName=" + conName + ", conTime=" + conTime + '}';
+    public String getConDesc() {
+        return conDesc;
     }
-    
+
+    public void setConDesc(String conDesc) {
+        this.conDesc = conDesc;
+    }
+
+    public String getConDest() {
+        return conDest;
+    }
+
+    public void setConDest(String conDest) {
+        this.conDest = conDest;
+    }
+
+    public String getConArtist() {
+        return conArtist;
+    }
+
+    public void setConArtist(String conArtist) {
+        this.conArtist = conArtist;
+    }
+            @Override
+    public String toString() {
+        return "\n\t\t\t\t\t\t" + conName 
+                + "\n\n\t\t\t     Artist\t\t: " + conArtist + "\t\t\t Time\t: " + conTime 
+                + "\n\t\t\t     Destination\t: " + conDest + "\n\t\t\t     Description\t: " + conDesc+"\n\n                             Available Tickets\t:" + ticket;
+    }
+
+}
+
     public void printSongListBP() {
         ArrayList<String> songList = new ArrayList<>();
         songList.add("\n\t\t\t\t\t\t\t   SONGS PERFORMING\t\n\n\t\t\t\t\t\t |\t'Kill This Love'\t\t|");
