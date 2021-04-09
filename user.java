@@ -2,18 +2,21 @@
 package finaldemo;
 
 
+
 public class user {
   
     private String name;
     private String password;
+    private String email;
 
     public user() {
     }
 
     
-    public user(String name, String password) {
+    public user(String name,String email,String password) {
         this.name = name;
         this.password = password;
+        this.email = email;
     }
 
     public String getName() {
@@ -32,10 +35,19 @@ public class user {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
-        return "User{" + "name=" + name + ", password=" + password + '}';
+        return "user{" + "name=" + name + ", password=" + password + ", email=" + email + '}';
     }
-}
 
+   
+}
 
