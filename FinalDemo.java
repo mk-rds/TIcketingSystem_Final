@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package finaldemo;
+package finaldemo1;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -20,8 +20,8 @@ public class FinalDemo {
         double salary, plusSalary;
         String name, pswd, name1, pswd1, type = null;
 
-        Concert[] Concert = {new Concert("BlackPink", "3 March 2021 "), //CONCERT ARRAY
-            new Concert("Jay Chou", "10 March 2021 ")
+          Concert[] Concert = {new Concert("BLACKPINK Concert for NEW ALBUM RELEASE", "7 MARCH 2021", "KPOP SENSATION BLACKPINK RETURNS", "BUKIT JALIL STADIUM", "BLACKPINK"),
+            new Concert("jay chou", "4 march 2021", "1st concert after covid", "SamePlace", "Jay")
         };
 
         ticket[] ticket = {new ticket(10, 20, 30, 40, 50), //TICKET ARRAY
@@ -52,26 +52,88 @@ public class FinalDemo {
                         //System.out.print("[2] LOGIN");
                         //what = input.nextInt();
 
-                        System.out.print("Register");                              //REGISTER AND LOGIN PART
-                        System.out.print("enter your name :");
+                     System.out.println("Registration");
+                        System.out.print("name : ");
                         name = input.next();
-                        System.out.print("enter your password :");
+
+                        //get email
+                        System.out.print("email address :");
+                        String email = input.next();
+                        Register.emailVerify(email);
+                        //email validation
+                        while (Register.emailVerify(email) == false) {
+                            System.out.println("Invalid email");
+                            System.out.print("email address :");
+                             email = input.next();
+                            Register.emailVerify(email);
+                        }
+                        System.out.println("Valid Email");
+
+                        // get password
+                        System.out.print("password : ");
                         pswd = input.next();
-
-                        System.out.print("Login");
-                        System.out.print("enter your name :");
-                        name1 = input.next();
-                        System.out.print("enter your password :");
-                        pswd1 = input.next();
-
-                        if (name.equals(name1) && pswd.equals(pswd1)) {
-                            System.out.print("login successful");
-
-                        } else {
-                            System.out.print("no match");
+                        Register.passwordVeify(pswd);
+                        //password validation
+                        while (Register.passwordVeify(pswd) == false) {
+                            System.out.println("Invalid Password");
+                            System.out.println("password must have at least 7 characters , letters and digits,symbols,at least one letter and one digit.\n");
+                            System.out.println("Try Again");
+                            System.out.print("password : ");
+                            pswd = input.next();
+                            Register.passwordVeify(pswd);
                         }
 
-                        user user = new user(name1, pswd1);
+                        System.out.println("Valid Password");
+                        //confirm password
+                        System.out.print("Confirm Password: ");
+                        pswd1 = input.next();
+                        Register.confirmPswd(pswd, pswd1);
+                        //compare
+                        while (Register.confirmPswd(pswd, pswd1) == false) {
+                            System.out.println("Password Not Match !!");
+                            System.out.print("Confirm Password: ");
+                            pswd1 = input.next();
+                            Register.confirmPswd(pswd, pswd1);
+                        }
+
+                        System.out.println("Register Successful");
+                        Register register = new Register(name, email, pswd);
+
+                        System.out.println("Login");
+                        System.out.print("name :");
+                        name1 = input.next();
+
+                        while (name1.equals(name) == false) {
+                            System.out.println("Wrong name ");
+                            System.out.print("name :");
+                            name1 = input.next();
+
+                        }
+                        
+                         System.out.print("email address :");
+                       String email1 = input.next();
+                      
+                        //email validation
+                        while (email1.equals(email) == false) {
+                            System.out.println("Invalid email");
+                            System.out.print("email address :");
+                             email1 = input.next();
+                           
+                        }
+                        System.out.println("Valid Email");
+                        System.out.print("password :");
+                        pswd1 = input.next();
+
+                        while (pswd1.equals(pswd) == false) {
+                            System.out.println("Wrong Password");
+                            System.out.print("password : ");
+                            pswd1 = input.next();
+
+                        }
+                        System.out.println("Login Successful!");
+
+                        user user = new user(name1, email1,pswd1);
+                        
 
                         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         for (int a = 0; a < Concert.length; a++) {                                             //DISPLAY ALL CONCERT USING FOR LOOP               
@@ -80,7 +142,7 @@ public class FinalDemo {
                         option = input.nextInt();
 
                         switch (option) {                                                                //CHOOSE WHAT CONCERT
-                            case 1:                              //SHOW FIRST CONCERT TICKET STOCK
+                            case 1:                                                                     //SHOW FIRST CONCERT TICKET STOCK
 
                                 do {
                                     System.out.println(Concert[option - 1]);                               //SHOW FIRST CONCERT DETAILS
@@ -237,136 +299,160 @@ public class FinalDemo {
                                 break;
                             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                             
                             case 2:
-                                System.out.println(Concert[option - 1]);                               //SHOW SECOND CONCERT DETAILS
-                                System.out.println(ticket[option - 1]);                                //SHOW FIRST CONCERT TICKET STOCK
-                                System.out.print("select what ticket type : ");                      //CHOOSE WHAT TICKET TYPE
-                                choose = input.nextInt();
-                                switch (choose) {
-                                    case 1:
-                                        type = "CAT1";
-                                        System.out.println("quantity : ");
-                                        quantity = input.nextInt();
-                                        if (ticket[option - 1].getCAT1() - quantity >= 0) {
-                                            ticket[option - 1].TicketStock(ticket, quantity, choose, option);
-                                            total = quantity * 900;
+                                
+                                do {
+                                    System.out.println(Concert[option - 1]);                               //SHOW FIRST CONCERT DETAILS
+                                    System.out.println(ticket[option - 1]);
+                                    System.out.println("\n\n\nPress [1] to buy ticket " + "\nPress [2] to display the song list for this concert");
 
-                                            switch (option) {
+                                    selection = input.nextInt();
+
+                                    switch (selection) {
+                                        case 1:
+                                            System.out.print("select what ticket type : ");                      //CHOOSE WHAT TICKET TYPE
+                                            choose = input.nextInt();
+                                            switch (choose) {
                                                 case 1:
-                                                    subtotalBP += total;
+                                                    type = "CAT1";
+                                                    System.out.println("quantity : ");
+                                                    quantity = input.nextInt();
+                                                    if (ticket[option - 1].getCAT1() - quantity >= 0) {
+                                                        ticket[option - 1].TicketStock(ticket, quantity, choose, option);
+                                                        total = quantity * 900;
+
+                                                        switch (option) {
+                                                            case 1:
+                                                                subtotalBP += total;
+                                                                break;
+                                                            case 2:
+                                                                subtotalJay += total;
+                                                                break;
+                                                        }
+                                                    } else {
+                                                        quantity = 0;
+                                                        total = 0;
+                                                        System.out.print("insuficient");
+                                                    }
+
+                                                    ticket[option - 1].printReceipt(choose, Concert[option - 1], quantity, total);
                                                     break;
+
                                                 case 2:
-                                                    subtotalJay += total;
+                                                    type = "CAT2";
+                                                    System.out.println("quantity : ");
+                                                    quantity = input.nextInt();
+                                                    if (ticket[option - 1].getCAT2() - quantity >= 0) {
+                                                        ticket[option - 1].TicketStock(ticket, quantity, choose, option);
+                                                        total = quantity * 800;
+
+                                                        switch (option) {
+                                                            case 1:
+                                                                subtotalBP += total;
+                                                                break;
+                                                            case 2:
+                                                                subtotalJay += total;
+                                                                break;
+                                                        }
+                                                    } else {
+                                                        quantity = 0;
+                                                        total = 0;
+                                                        System.out.print("insuficient");
+                                                    }
+
+                                                    ticket[option - 1].printReceipt(choose, Concert[option - 1], quantity, total);
                                                     break;
+
+                                                case 3:
+                                                    type = "CAT3";
+                                                    System.out.println("quantity : ");
+                                                    quantity = input.nextInt();
+                                                    if (ticket[option - 1].getCAT3() - quantity >= 0) {
+                                                        ticket[option - 1].TicketStock(ticket, quantity, choose, option);
+                                                        total = quantity * 700;
+
+                                                        switch (option) {
+                                                            case 1:
+                                                                subtotalBP += total;
+                                                                break;
+                                                            case 2:
+                                                                subtotalJay += total;
+                                                                break;
+                                                        }
+                                                    } else {
+                                                        quantity = 0;
+                                                        total = 0;
+                                                        System.out.print("insuficient");
+                                                    }
+
+                                                    ticket[option - 1].printReceipt(choose, Concert[option - 1], quantity, total);
+                                                    break;
+
+                                                case 4:
+                                                    type = "CAT4";
+                                                    System.out.println("quantity : ");
+                                                    quantity = input.nextInt();
+                                                    if (ticket[option - 1].getCAT4() - quantity >= 0) {
+                                                        ticket[option - 1].TicketStock(ticket, quantity, choose, option);
+                                                        total = quantity * 600;
+
+                                                        switch (option) {
+                                                            case 1:
+                                                                subtotalBP += total;
+                                                                break;
+                                                            case 2:
+                                                                subtotalJay += total;
+                                                                break;
+                                                        }
+                                                    } else {
+                                                        quantity = 0;
+                                                        total = 0;
+                                                        System.out.print("insuficient");
+                                                    }
+
+                                                    ticket[option - 1].printReceipt(choose, Concert[option - 1], quantity, total);
+                                                    break;
+
+                                                case 5:
+                                                    type = "CAT5";
+                                                    System.out.println("quantity : ");
+                                                    quantity = input.nextInt();
+                                                    if (ticket[option - 1].getCAT5() - quantity >= 0) {
+                                                        ticket[option - 1].TicketStock(ticket, quantity, choose, option);
+                                                        total = quantity * 500;
+
+                                                        switch (option) {
+                                                            case 1:
+                                                                subtotalBP += total;
+                                                                break;
+                                                            case 2:
+                                                                subtotalJay += total;
+                                                                break;
+                                                        }
+                                                    } else {
+                                                        quantity = 0;
+                                                        total = 0;
+                                                        System.out.print("insuficient");
+                                                    }
+
+                                                    ticket[option - 1].printReceipt(choose, Concert[option - 1], quantity, total);
+                                                    break;
+
                                             }
-                                        } else {
-                                            quantity = 0;
-                                            total = 0;
-                                            System.out.print("insuficient");
-                                        }
+                                            break;
 
-                                        ticket[option - 1].printReceipt1(choose, Concert[option - 1], quantity, total);
-                                        break;
+                                        case 2:
+                                            Concert[1].printSongListJay();
+                                            System.out.println("Press any key to go back to previous page ");
+                                            String goBack = input.next();
 
-                                    case 2:
-                                        type = "CAT2";
-                                        System.out.println("quantity : ");
-                                        quantity = input.nextInt();
-                                        if (ticket[option - 1].getCAT2() - quantity >= 0) {
-                                            ticket[option - 1].TicketStock(ticket, quantity, choose, option);
-                                            total = quantity * 800;
+                                            break;
 
-                                            switch (option) {
-                                                case 1:
-                                                    subtotalBP += total;
-                                                    break;
-                                                case 2:
-                                                    subtotalJay += total;
-                                                    break;
-                                            }
-                                        } else {
-                                            quantity = 0;
-                                            total = 0;
-                                            System.out.print("insuficient");
-                                        }
+                                        default:
+                                            break;
 
-                                        ticket[option - 1].printReceipt1(choose, Concert[option - 1], quantity, total);
-                                        break;
-
-                                    case 3:
-                                        type = "CAT3";
-                                        System.out.println("quantity : ");
-                                        quantity = input.nextInt();
-                                        if (ticket[option - 1].getCAT3() - quantity >= 0) {
-                                            ticket[option - 1].TicketStock(ticket, quantity, choose, option);
-                                            total = quantity * 700;
-
-                                            switch (option) {
-                                                case 1:
-                                                    subtotalBP += total;
-                                                    break;
-                                                case 2:
-                                                    subtotalJay += total;
-                                                    break;
-                                            }
-                                        } else {
-                                            quantity = 0;
-                                            total = 0;
-                                            System.out.print("insuficient");
-                                        }
-
-                                        ticket[option - 1].printReceipt1(choose, Concert[option - 1], quantity, total);
-                                        break;
-
-                                    case 4:
-                                        type = "CAT4";
-                                        System.out.println("quantity : ");
-                                        quantity = input.nextInt();
-                                        if (ticket[option - 1].getCAT4() - quantity >= 0) {
-                                            ticket[option - 1].TicketStock(ticket, quantity, choose, option);
-                                            total = quantity * 600;
-
-                                            switch (option) {
-                                                case 1:
-                                                    subtotalBP += total;
-                                                    break;
-                                                case 2:
-                                                    subtotalJay += total;
-                                                    break;
-                                            }
-                                        } else {
-                                            quantity = 0;
-                                            total = 0;
-                                            System.out.print("insuficient");
-                                        }
-
-                                        ticket[option - 1].printReceipt1(choose, Concert[option - 1], quantity, total);
-                                        break;
-
-                                    case 5:
-                                        type = "CAT5";
-                                        System.out.println("quantity : ");
-                                        quantity = input.nextInt();
-                                        if (ticket[option - 1].getCAT5() - quantity >= 0) {
-                                            ticket[option - 1].TicketStock(ticket, quantity, choose, option);
-                                            total = quantity * 500;
-
-                                            switch (option) {
-                                                case 1:
-                                                    subtotalBP += total;
-                                                    break;
-                                                case 2:
-                                                    subtotalJay += total;
-                                                    break;
-                                            }
-                                        } else {
-                                            quantity = 0;
-                                            total = 0;
-                                            System.out.print("insuficient");
-                                        }
-
-                                        ticket[option - 1].printReceipt1(choose, Concert[option - 1], quantity, total);
-                                        break;
-                                }
+                                    }
+                                } while (selection != 1);
+                                  break;  
 
                         }
                         TicketSystem ticketSystem = new TicketSystem(Concert[option - 1], type, quantity, total);
