@@ -54,7 +54,7 @@ public class Concert {
         return "Concert{" + "conName=" + conName + ", conTime=" + conTime + '}';
     }
     
-    public void printSongList() {
+    public void printSongListBP() {
         ArrayList<String> songList = new ArrayList<>();
         songList.add("\n\t\t\t\t\t\t\t   SONGS PERFORMING\t\n\n\t\t\t\t\t\t |\t'Kill This Love'\t\t|");
         songList.add("\t\t\t\t\t\t |\t'Don't Know What to Do'\t\t|");
@@ -67,8 +67,22 @@ public class Concert {
             System.out.println(songList.get(i));
 
         }
+    }
+     public void printSongListJay() {
+        ArrayList<String> songList = new ArrayList<>();
+        songList.add("\n\t\t\t\t\t\t\t   SONGS PERFORMING\t\n\n\t\t\t\t\t\t |\t'Mojito'\t\t|");
+        songList.add("\t\t\t\t\t\t |\t'Won't Cry'\t\t|");
+        songList.add("\t\t\t\t\t\t |\t'Love Confession'\t\t|");
+        songList.add("\t\t\t\t\t\t |\t'Waiting For You'\t\t|");
+        songList.add("\t\t\t\t\t\t |\t'Silence'\t\t\t|");
 
+        for (int i = 0; i <= songList.size() - 1; i++) {
+
+            System.out.println(songList.get(i));
+
+        }
        
 
     }
 }
+
